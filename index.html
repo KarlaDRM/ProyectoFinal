@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌊 Océano Interactivo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #87CEEB 0%, #4682B4 50%, #191970 100%);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            color: white;
+        }
+        
+        #container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        
+        #controls {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 50, 100, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #00BFFF;
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        #controls h3 {
+            margin: 0 0 15px 0;
+            color: #00FFFF;
+            text-shadow: 0 0 10px #00FFFF;
+        }
+        
+        #controls p {
+            margin: 8px 0;
+            color: #FFFFFF;
+            font-size: 14px;
+        }
+        
+        #controls button {
+            background: linear-gradient(45deg, #008B8B, #20B2AA);
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        #controls button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(32, 178, 170, 0.5);
+        }
+        
+        #fish-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #00FFFF;
+            min-width: 200px;
+            display: none;
+        }
+        
+        #stats {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 50, 100, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #00BFFF;
+        }
+        
+        .stat-item {
+            margin: 5px 0;
+            color: #00FFFF;
+        }
+        
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 50, 100, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #00FFFF;
+            text-align: center;
+            z-index: 200;
+        }
+        
+        .wave {
+            animation: wave 2s infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="loading">
+            <h2>🌊 Cargando Océano...</h2>
+            <p>Preparando el ecosistema marino</p>
+        </div>
+        
+        <div id="controls">
+            <h3 class="wave">🌊 Océano Interactivo</h3>
+            <p><strong>hecho por:</strong> Karla denisse ruiz mendez</p>
+            <p><strong>Click:</strong> Alimentar peces</p>
+            <p><strong>Mouse:</strong> Mover cámara</p>
+            <p><strong>Scroll:</strong> Zoom submarino</p>
+            <button onclick="addFish()">🐠 Agregar Pez</button>
+            <button onclick="addBubbles()">💭 Más Burbujas</button>
+            <button onclick="toggleDay()">☀️/🌙 Cambiar Hora</button>
+        </div>
+        
+        <div id="stats">
+            <h4 style="margin: 0 0 10px 0; color: #00FFFF;">📊 Estadísticas</h4>
+            <div class="stat-item">🐟 Peces: <span id="fish-count">0</span></div>
+            <div class="stat-item">🍎 Comida dada: <span id="food-count">0</span></div>
+            <div class="stat-item">💭 Burbujas: <span id="bubble-count">0</span></div>
+            <div class="stat-item">🏝️ Profundidad: <span id="depth">5m</span></div>
+        </div>
+        
+        <div id="fish-info">
+            <h4 id="fish-name"></h4>
+            <p id="fish-description"></p>
+        </div>
+    </div>
+    
+    <script type="module" src="main.ts"></script>
+</body>
+</html>
